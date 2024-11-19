@@ -1,6 +1,7 @@
 package alatoo.car_booking.controllers;
 
 import alatoo.car_booking.dtos.CarDto;
+import alatoo.car_booking.dtos.SearchCarDto;
 import alatoo.car_booking.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -54,4 +55,26 @@ public class AdminController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/car/bookings")
+    public ResponseEntity<?> getBookings() {
+        return ResponseEntity.ok(adminService.getBookings());
+    }
+
+    @GetMapping("/car/booking/{bookingId}/{status}")
+    public ResponseEntity<?> changeBookingStatus(@PathVariable Long bookingId,
+                                                 @PathVariable String status) {
+        boolean success = adminService.changeBookingStatus(bookingId, status);
+        if (success) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/car/search")
+    public ResponseEntity<?> searchCar(@RequestBody SearchCarDto searchCarDto) {
+        return ResponseEntity.ok(adminService.searchCar(searchCarDto));
+    }
+
+
 }

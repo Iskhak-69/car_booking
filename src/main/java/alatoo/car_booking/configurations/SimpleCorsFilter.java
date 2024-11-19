@@ -16,7 +16,7 @@ import java.util.Map;
 public class SimpleCorsFilter implements Filter {
 
     private static final String[] ALLOWED_ORIGINS = {
-            "http://localhost:8888"
+            "http://localhost:4200"
     };
 
     @Override

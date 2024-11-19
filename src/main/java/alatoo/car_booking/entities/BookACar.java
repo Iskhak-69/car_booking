@@ -1,5 +1,6 @@
 package alatoo.car_booking.entities;
 
+import alatoo.car_booking.dtos.BookACarDto;
 import alatoo.car_booking.enums.BookCarStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -34,5 +35,20 @@ public class BookACar {
     @JsonIgnore
     private Car car;
 
+    public BookACarDto getBookACarDto() {
+        BookACarDto bookACarDto = new BookACarDto();
+
+        bookACarDto.setId(id);
+        bookACarDto.setFromDate(fromDate);
+        bookACarDto.setToDate(toDate);
+        bookACarDto.setDays(days);
+        bookACarDto.setAmount(amount);
+        bookACarDto.setBookCarStatus(bookCarStatus);
+        bookACarDto.setEmail(user.getEmail());
+        bookACarDto.setUsername(user.getName());
+        bookACarDto.setUserId(user.getId());
+
+        return bookACarDto;
+    }
 
 }

@@ -2,6 +2,7 @@ package alatoo.car_booking.controllers;
 
 import alatoo.car_booking.dtos.BookACarDto;
 import alatoo.car_booking.dtos.CarDto;
+import alatoo.car_booking.dtos.SearchCarDto;
 import alatoo.car_booking.services.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,16 @@ public class CustomerController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @GetMapping("/car/bookings/{userId}")
+    public ResponseEntity<?> getBookingsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(customerService.getBookingsByUserId(userId));
+    }
+
+    @PostMapping("/car/search")
+    public ResponseEntity<?> searchCar(@RequestBody SearchCarDto searchCarDto) {
+        return ResponseEntity.ok(customerService.searchCar(searchCarDto));
     }
 
 }
